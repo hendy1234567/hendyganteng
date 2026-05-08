@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Admin Dashboard</title>
+  <style>
+    body { font-family: Arial; padding: 20px; }
+    table { border-collapse: collapse; width: 100%; }
+    th, td { border: 1px solid #ccc; padding: 10px; }
+    th { background: #f4f4f4; }
+    button { padding: 5px 10px; cursor: pointer; }
+  </style>
+</head>
+<body>
+
+<h2>Admin Dashboard - Reservations</h2>
+
+<button onclick="logout()">Logout</button>
+
+<br><br>
+
+<table id="tableData">
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Nama</th>
+      <th>Email</th>
+      <th>Keperluan</th>
+      <th>Pesan</th>
+      <th>Phone</th>
+      <th>Aksi</th>
+    </tr>
+  </thead>
+  <tbody></tbody>
+</table>
+
+<script>
+async function loadData() {
+  try {
+    const res = await fetch('http://localhost:3000/reservations');
+
+    if (res.status === 401) {
+      alert('Login dulu!');
+      window.location.href = 'login.html';
+      return;
+    }
+
+    const data = await res.json();
+
+    const tbody = document.querySelector('#tableData tbody');
+    tbody.innerHTML = '';
+
+    data.forEach(item => {
+      const row = `
+        <tr>
+          <td>${item.id}</td>
+          <td>${item.name}</td>
+          <td>${item.email}</td>
+          <td>${item.keperluan}</td>
+          <td>${item.pesan}</td>
+          <td>${item.phone}</td>
+          <td>
+            <button onclick="hapus(${item.id})">Hapus</button>
+          </td>
+        </tr>
+      `;
+      tbody.innerHTML += row;
+    });
+
+  } catch (err) {
+    alert('Gagal ambil data');
+    console.log(err);
+  }
+}
+
+async function hapus(id) {
+  if (!confirm('Yakin mau hapus?')) return;
+
+  await fetch(`http://localhost:3000/reservations/${id}`, {
+    method: 'DELETE'
+  });
+
+  loadData();
+}
+
+function logout() {
+  fetch('http://localhost:3000/logout')
+    .then(() => {
+      alert('Logout berhasil');
+      window.location.href = 'login.html';
+    });
+}
+
+loadData();
+</script>
+
+</body>
+</html>
