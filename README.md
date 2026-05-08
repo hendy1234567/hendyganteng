@@ -7,3 +7,6 @@
 # http://localhost:3000/admin.html = halaman dashboard admin
 # http://localhost:3000/reservation.html = halaman form reservation 
 # http://localhost:3000/reservations = untuk melihat data yang di simpan dari form reservation.
+
+# username login admin = Hendy
+# password login admin = 241112411
