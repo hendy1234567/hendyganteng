@@ -1,0 +1,19 @@
+Nama kelompok / Nama tim : SEER
+Topik Project : e-commerce
+Anggota Kelompok :
+1. Hendy (241112411) cuman hendy saja pak, hehehehehe.
+
+Teknologi yang saya gunakan adalah visual studio code, html, css, javascript, database MySQL workbench. 
+
+fitur : 
+1. login admin
+2. form reservation 
+3. admin dashboard
+4. hapus data reservation
+5. logout dari admin dashboard 
+
+http://localhost:3000/home.html = halaman Utama website 
+http://localhost:3000/login.html = halaman login admin
+http://localhost:3000/admin.html = halaman dashboard admin
+http://localhost:3000/reservation.html = halaman form reservation 
+http://localhost:3000/reservations = untuk melihat data yang di simpan dari form reservation.
